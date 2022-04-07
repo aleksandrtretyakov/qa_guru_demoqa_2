@@ -15,11 +15,10 @@ public class TestBoxTests {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-
     }
 
     @Test
-    void fillFormtest() {
+    void fillFormTest() {
         open("/text-box");
         String name = "Aleksandr Tretyakov";
         String email = "aleks@tret.com";
@@ -34,7 +33,6 @@ public class TestBoxTests {
 
 //        Asserts
         $("[id = output]").shouldHave(text(name), text(email), text(currentAddress), text(permanentAddress));
-        $("[id = output] [id=name").shouldHave(text(name));
-//
+        $("[id = output] [id=name]").shouldHave(text(name));
     }
 }

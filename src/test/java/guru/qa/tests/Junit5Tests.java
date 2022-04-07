@@ -28,7 +28,7 @@ public class Junit5Tests {
 
     @Test
     void assertTest () {
-        System.out.println("###                      Test 0");
+        System.out.println("###                       Test 0");
     }
 
     @Test
