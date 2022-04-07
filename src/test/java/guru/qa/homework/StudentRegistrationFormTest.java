@@ -29,7 +29,7 @@ public class StudentRegistrationFormTest {
         String month = "March";
         String year = "2000";
         String subject = "Maths";
-        File file = new File("src/test/java/guru/qa/resources/qr-code.png");
+        File file = new File("src/test/resources/qr-code.png");
         String currentAddress = "Street #1";
         String state = "Haryana";
         String city = "Karnal";
