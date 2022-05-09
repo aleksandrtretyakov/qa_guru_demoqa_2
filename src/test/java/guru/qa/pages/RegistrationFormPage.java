@@ -2,7 +2,7 @@ package guru.qa.pages;
 
 import java.io.File;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -42,7 +42,7 @@ public class RegistrationFormPage {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(month);
         $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--" + date).click();
+        $(".react-datepicker__day--0" + date).click();
         return this;
     }
 
