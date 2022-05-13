@@ -1,8 +1,6 @@
 package guru.qa.homework;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -13,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.format;
 
-public class StudentRegFormWithFaker {
+public class StudentRegFormWithFaker extends TestBase{
 
     Faker faker = new Faker();
 
@@ -24,16 +22,8 @@ public class StudentRegFormWithFaker {
 
     String expectedFullName = format("%s %s", firstName, lastName);
 
-    @BeforeAll
-    static void setUpTest() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
-
     @Test
     void fillFormTest() {
-
 
         String month = "March";
         String year = "2000";

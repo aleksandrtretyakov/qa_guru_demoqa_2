@@ -1,7 +1,5 @@
 package guru.qa.homework;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -14,13 +12,6 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
 public class StudentRegistrationFormTest extends TestBase {
-
-    @BeforeAll
-    static void setUpTest() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
 
     @Test
     void fillFormTest() {
