@@ -1,15 +1,17 @@
 package guru.qa.pages;
 
 import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+
 public class RegistrationFormPage {
 
     public RegistrationFormPage openPage() {
-        open("/automation-practice-form");
+        open("https://demoqa.com/automation-practice-form");
         return this;
     }
 
@@ -87,14 +89,16 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage resultFormDataCheck(String key, String value) {
-        $(".modal-body").shouldHave(text("Aleksandr Tretyakov"),
-                text("aleks@tret.com"), text("Male"), text("8123456789"), text("04 March,2000"),
-                text("Maths"), text("Sports"), text("qr-code.png"), text("Street #1"),
-                text("Haryana Karnal"));
+        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
+        return this;
+    }
+
+    public RegistrationFormPage closeForm() {
         $(byText("Close")).pressEnter();
         return this;
     }
 }
+
 
 
 

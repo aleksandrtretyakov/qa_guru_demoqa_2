@@ -2,6 +2,7 @@ package guru.qa.homework;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -9,8 +10,10 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
-public class StudentRegistrationFormTest {
+@Tag("demoqa")
+public class StudentRegistrationFormTest extends TestBase {
 
     @BeforeAll
     static void setUpTest() {
@@ -25,41 +28,73 @@ public class StudentRegistrationFormTest {
         String firstName = "Aleksandr";
         String lastName = "Tretyakov";
         String email = "aleks@tret.com";
+        String gender = "Male";
         String phoneNumber = "8123456789";
         String month = "March";
         String year = "2000";
+        String date = "04";
         String subject = "Maths";
+        String hobby = "Sports";
         File file = new File("src/test/resources/qr-code.png");
         String currentAddress = "Street #1";
         String state = "Haryana";
         String city = "Karnal";
+        String formTitle = "Thanks for submitting the form";
 
-        open("/automation-practice-form");
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(email);
-        $(byText("Male")).click();
-        $("#userNumber").setValue(phoneNumber);
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--004").click();
-        $("#subjectsInput").setValue(subject).pressEnter();
-        $(byText("Sports")).click();
-        $("#uploadPicture").uploadFile(file);
-        $("#currentAddress").setValue(currentAddress);
-        $("#react-select-3-input").setValue(state).pressEnter();
-        $("#react-select-4-input").setValue(city).pressEnter();
-        $("#submit").pressEnter();
+        step("Open student registration form", () -> {
+            open("/automation-practice-form");
+        });
+
+
+        step("Fill student registration form", () -> {
+            $("#firstName").setValue(firstName);
+            $("#lastName").setValue(lastName);
+            $("#userEmail").setValue(email);
+            $(byText(gender)).click();
+            $("#userNumber").setValue(phoneNumber);
+            $("#dateOfBirthInput").click();
+            $(".react-datepicker__month-select").selectOption(month);
+            $(".react-datepicker__year-select").selectOption(year);
+            $(".react-datepicker__day--0" + date).click();
+            $("#subjectsInput").setValue(subject).pressEnter();
+            $(byText(hobby)).click();
+            $("#uploadPicture").uploadFile(file);
+            $("#currentAddress").setValue(currentAddress);
+            $("#react-select-3-input").setValue(state).pressEnter();
+            $("#react-select-4-input").setValue(city).pressEnter();
+            $("#submit").pressEnter();
+        });
+
 
         //        Asserts
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".modal-body").shouldHave(text("Aleksandr Tretyakov"),
-                text("aleks@tret.com"), text("Male"), text("8123456789"), text("04 March,2000"),
-                text("Maths"), text("Sports"), text("qr-code.png"), text("Street #1"),
-                text("Haryana Karnal"));
-        $(byText("Close")).pressEnter();
+        step("Verify student registration form", () -> {
+            $("#example-modal-sizes-title-lg").shouldHave(text(formTitle));
+            $(".table-responsive").$(byText("Student Name")).parent()
+                    .shouldHave(text (firstName + " " + lastName));
+            $(".table-responsive").$(byText("Student Email")).parent()
+                    .shouldHave(text (email));
+            $(".table-responsive").$(byText("Gender")).parent()
+                    .shouldHave(text (gender));
+            $(".table-responsive").$(byText("Mobile")).parent()
+                    .shouldHave(text (phoneNumber));
+            $(".table-responsive").$(byText("Date of Birth")).parent()
+                    .shouldHave(text (date + " " + month + "," + year));
+            $(".table-responsive").$(byText("Subjects")).parent()
+                    .shouldHave(text (subject));
+            $(".table-responsive").$(byText("Hobbies")).parent()
+                    .shouldHave(text (hobby));
+            $(".table-responsive").$(byText("Picture")).parent()
+                    .shouldHave(text ("qr-code.png"));
+            $(".table-responsive").$(byText("Address")).parent()
+                    .shouldHave(text (currentAddress));
+            $(".table-responsive").$(byText("State and City")).parent()
+                    .shouldHave(text (state + " " + city));
+        });
+
+        step("Close the form", () -> {
+            $(byText("Close")).pressEnter();
+        });
     }
 }
 
