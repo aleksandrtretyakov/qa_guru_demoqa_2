@@ -16,6 +16,7 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
+
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
 
@@ -23,8 +24,6 @@ public class TestBase {
         Configuration.baseUrl = config.baseUrl();
         Configuration.browserSize = config.browserSize();
         Configuration.remote = "https://" + config.user() + ":" + config.userPassword() + "@" + config.selenoidUrl();
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
 
 //        String login = config.login();
 //        String password = config.password();
