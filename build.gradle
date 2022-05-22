@@ -53,8 +53,8 @@ tasks.withType(Test) {
     }
 }
 
-task owner(type: Test) {
+task master(type: Test) {
     useJUnitPlatform{
-        includeTags "owner"
+        includeTags "master"
     }
 }
