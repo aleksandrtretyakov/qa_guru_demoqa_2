@@ -8,5 +8,6 @@ public interface CredentialsConfigHW extends Config {
     String userPassword();
     String baseUrl();
     String browserSize();
+    String selenoidUrl();
 
 }

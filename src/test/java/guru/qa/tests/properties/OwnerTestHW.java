@@ -15,6 +15,7 @@ public class OwnerTestHW {
         String userPassword = config.userPassword();
         String baseUrl = config.baseUrl();
         String browserSize = config.browserSize();
+        String selenoidUrl = config.selenoidUrl();
 
         System.out.println("Login: " + user);
         System.out.println("Password: " + userPassword);
