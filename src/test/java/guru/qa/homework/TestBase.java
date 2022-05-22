@@ -23,8 +23,6 @@ public class TestBase {
         Configuration.baseUrl = config.baseUrl();
         Configuration.browserSize = config.browserSize();
         Configuration.remote = "https://" + config.user() + ":" + config.userPassword() + "@" + config.selenoidUrl();
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
