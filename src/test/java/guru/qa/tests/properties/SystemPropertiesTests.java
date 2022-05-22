@@ -49,5 +49,4 @@ public class SystemPropertiesTests {
     void someTest6() {
         System.out.println("I wanna tell you something: " + System.getProperty("anyText"));
     }
-
 }
