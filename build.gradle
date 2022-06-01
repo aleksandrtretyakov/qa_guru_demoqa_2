@@ -53,8 +53,8 @@ tasks.withType(Test) {
     }
 }
 
-task master(type: Test) {
-    useJUnitPlatform{
-        includeTags "master"
-    }
-}
+//task master(type: Test) {
+//    useJUnitPlatform{
+//        includeTags "master"
+//    }
+//}
